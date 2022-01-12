@@ -1,5 +1,5 @@
 // ShopifyCRUD.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
+
 
 #include <iostream>
 #include <string.h>
@@ -90,6 +90,9 @@ int main(void)
 
     cout << "To see a specific item, simply type view followed by the item name. Simply typing 'view all' with no item will show the full list. For instance:\n";
     cout << "'view socks'\twill show you the socks, whereas \t'viewAll'\t will show you the full inventory" << endl << endl;
+
+    cout << "To delete an item, enter 'delete ' followed by the item name, such as 'delete socks'" << endl;
+    cout << "The item will be fully removed from the inventory and will need to be re-created" << endl;
     
 
     cout << "To create a CSV, please enter 'CSV' followed by the version or name to give the CSV. For instance:\n";
@@ -122,7 +125,7 @@ int main(void)
         {
             cin >> name;
             printToCSV(name, stuff);
-            cout << "created CSV" << endl;
+            cout << "created inventory_" << "name"<< ".CSV" << endl;
         }
 
         else if (command == "view")
@@ -138,7 +141,14 @@ int main(void)
             }
             else
             {
-                cout << *stuff[name];
+                if (!stuff.count(name))
+                {
+                    cout << "\n" << name << " Not in inventory!";
+                }
+                else
+                {
+                    cout << *stuff[name];
+                }
             }
             cout << endl;
         }
@@ -149,11 +159,26 @@ int main(void)
             break;
         }
 
+        else if (command == "delete")
+        {
+            cin >> name;
+            if (!stuff.count(name))
+            {
+                cout << "\n" << name << " Not in inventory!" << endl;
+            }
+            else
+            {
+                delete(stuff[name]);
+                stuff.erase(name);
+                cout << "Deleted " << name << " from Inventory.\n";
+            }
+        }
+
         else
         {
             if (!stuff.count(command))
             {
-                cout << "invalid entry! Create the item first";
+                cout << "invalid entry! Create the item first" << endl;
                 cin.ignore(1000, '\n');
             }
 
@@ -184,6 +209,7 @@ int main(void)
                     cin >> sku;
                     stuff[name]->changeSku(sku);
                 }
+
                 else
                 {
                     cout << "invalid command for " << name;
@@ -193,14 +219,3 @@ int main(void)
         }
     }
 }
-
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
-
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
