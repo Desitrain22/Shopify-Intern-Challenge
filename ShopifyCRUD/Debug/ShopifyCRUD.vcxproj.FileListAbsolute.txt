@@ -1,1 +1,2 @@
 C:\Users\desit\source\repos\ShopifyCRUD\Debug\ShopifyCRUD.exe
+C:\Users\desit\source\repos\Shopify-Intern-Challenge\ShopifyCRUD\Debug\ShopifyCRUD.exe
