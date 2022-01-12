@@ -9,7 +9,6 @@ To hold our inventory, we use a map with keys corresponding to the name of each 
 
 Issues:
 1. This doesn't support viewing items named 'all' for the sake of convenience to the user
-2. I probably should go back and make a 'delete' function to completely remove an item from stock
+2. I probably should go back and make a 'delete' function to completely remove an item from stock -- DONE! 1/12/22
 3. Trying to create a new item with the same name but different sku will overwrite the existing item
-4. No front end UI/UX
-5. 
+4. No front end UI/UX. If I made a python flask app with pandas, probably might've been easier to do so with Djinja II and what not
